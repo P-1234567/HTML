@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommender</title>
+</head>
+<body>
+    <h1>Movie Recommender</h1>
+    
+    <h2>Current Users</h2>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.user_prnt() }} - <a href="{{ url_for('recommend', user_id=loop.index0) }}">Get Recommendation</a></li>
+        {% else %}
+            <li>No users found</li>
+        {% endfor %}
+    </ul>
+    
+    <h2>Add a New User</h2>
+    <form action="/add" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="genre">Favorite Genre:</label>
+        <select id="genre" name="genre" required>
+            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="Crime">Crime</option>
+            <option value="Action">Action</option>
+            <option value="Drama">Drama</option>
+            <option value="Romance">Romance</option>
+            <option value="Horror">Horror</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Comedy">Comedy</option>
+        </select><br><br>
+        <input type="submit" value="Add User">
+    </form>
+</body>
+</html>
